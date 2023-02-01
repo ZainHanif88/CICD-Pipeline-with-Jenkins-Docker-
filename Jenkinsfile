@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('clean and checkout') {
             steps {
-                sh 'mvn clean -f backend'
+                sh 'mvn clean -f ./backend'
                 echo 'downloading github project...'
             }
         }
@@ -18,7 +18,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building...'
-                sh 'mvn test-compile -f backend'
+                sh 'mvn test-compile -f ./backend'
                 echo 'finished building'
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('test') {
             steps {
                 echo 'starting test.....'
-                sh 'mvn surefire:test -f backend'
+                sh 'mvn surefire:test -f ./backend'
                 echo 'finished test'
             }
         }
@@ -34,7 +34,7 @@ pipeline {
         stage('package') {
             steps {
                 echo 'packaging...'
-                sh 'mvn war:war -f backend'
+                sh 'mvn war:war -f ./backend'
                 echo 'packaged'
                 sh 'pwd'
 
@@ -43,7 +43,7 @@ pipeline {
 
         stage ('deploy'){
              steps {
-                dir('backend'){
+                dir('./backend'){
                     sh 'cp ./target.ROOT.war /artifacts'
                 }
                 
