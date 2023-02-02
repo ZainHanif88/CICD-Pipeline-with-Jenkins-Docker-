@@ -22,17 +22,12 @@ pipeline {
                 echo 'finished building'
             }
         }
-
-       stage('Test') {
+ 
+        stage('test') {
             steps {
-                sh './mvnw test'
-                // bat '.\\mvnw test'
-            }
-
-            post {
-                always {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
+                echo 'starting test.....'
+                sh 'mvn surefire:test -f backend'
+                echo 'finished test'
             }
         }
         
