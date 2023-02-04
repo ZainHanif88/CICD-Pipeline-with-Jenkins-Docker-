@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh 'mvn clean -f backend'
                 echo 'downloading github project...'
-                git credentialsId: 'zainisacoder', url: 'https://github.com/zainisacoder/CICD-Pipeline-with-Jenkins-Docker-.git'
+                git branch: 'main', credentialsId: 'zainisacoder', url: 'https://github.com/zainisacoder/CICD-Pipeline-with-Jenkins-Docker-.git'
             }
         }
 
